@@ -15,16 +15,16 @@ protected:
     string _type;
 
 public:
-    virtual void setHealth(int)
-    {};
+    virtual void setHealth(int) {};
     virtual int getHealth()
-    { return 0;};
+    {
+        return 0;
+    };
     virtual string getType()
     {
         return " ";
     }
-    ~BaseCharacter(){};
-
+    ~BaseCharacter() {};
 };
 
 class BossEnemy
@@ -38,11 +38,11 @@ public:
         _health = health;
         _damage = damage;
     }
-    void attack(BaseCharacter* c)
+    void attack(BaseCharacter *c)
     {
-        c->setHealth(c->getHealth()-_damage);
-        cout<<"Boss attacks "<<c->getType()<<" with power "<<_damage<<endl;
-        cout<<c->getType()<<" takes "<<_damage<<" damage! Health now: "<<c->getHealth()<<endl;
+        c->setHealth(c->getHealth() - _damage);
+        cout << "Boss attacks " << c->getType() << " with power " << _damage << endl;
+        cout << c->getType() << " takes " << _damage << " damage! Health now: " << c->getHealth() << endl;
     }
     int getHealth()
     {
@@ -65,17 +65,12 @@ public:
 class CharacterAction
 {
 public:
-    virtual void attack(BossEnemy *boss)=0;
+    virtual void attack(BossEnemy *boss) = 0;
     virtual void defend(BossEnemy *boss) = 0;
     virtual void useSpecialAbility(BossEnemy *boss) = 0;
     virtual void displayStatus(BossEnemy *boss) = 0;
-    ~CharacterAction(){};
-
+    ~CharacterAction() {};
 };
-
-
-
-
 
 class Mage : public BaseCharacter, public CharacterAction
 {
@@ -89,7 +84,7 @@ public:
         _damage = damage;
         _specialAbilityPower = 30;
         _mana = 0;
-        _type="Mage";
+        _type = "Mage";
     }
 
     void attack(BossEnemy *boss) override
@@ -105,13 +100,13 @@ public:
     {
         boss->setHealth(boss->getHealth() - _specialAbilityPower);
         cout << "Mage Uses Arcane Blast with power " << _specialAbilityPower << endl;
-        cout<<"Boss takes "<<_specialAbilityPower<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _specialAbilityPower << " damage! Health now: " << boss->getHealth() << endl;
         increaseMana(50);
     }
     void displayStatus(BossEnemy *boss) override
     {
         cout << "Mage attacks with power " << _damage << endl;
-        cout<<"Boss takes "<<_damage<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _damage << " damage! Health now: " << boss->getHealth() << endl;
     }
     int getHealth()
     {
@@ -119,7 +114,7 @@ public:
     }
     void setHealth(int health)
     {
-        _health=health;
+        _health = health;
     }
     int getDamage()
     {
@@ -127,7 +122,7 @@ public:
     }
     void setMana(int mana)
     {
-        _mana=mana;
+        _mana = mana;
     }
     int getMana()
     {
@@ -135,9 +130,9 @@ public:
     }
     void increaseMana(int increase)
     {
-        _mana+=increase;
+        _mana += increase;
     }
-        string getType()
+    string getType()
     {
         return _type;
     }
@@ -150,12 +145,12 @@ class Warrior : public BaseCharacter, public CharacterAction
 public:
     Warrior(string name, int health, int damage)
     {
-        _name=name;
-        _health=health;
-        _damage=damage;
-        _specialAbilityPower=35;
-        _mana=0;
-        _type="Warrior";
+        _name = name;
+        _health = health;
+        _damage = damage;
+        _specialAbilityPower = 35;
+        _mana = 0;
+        _type = "Warrior";
     }
 
     void attack(BossEnemy *boss) override
@@ -171,13 +166,13 @@ public:
     {
         boss->setHealth(boss->getHealth() - _specialAbilityPower);
         cout << "Warrior uses Berserk Rage with power " << _specialAbilityPower << endl;
-        cout<<"Boss takes "<<_specialAbilityPower<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _specialAbilityPower << " damage! Health now: " << boss->getHealth() << endl;
         setMana(0);
     }
     void displayStatus(BossEnemy *boss) override
     {
         cout << "Warrior attacks with power " << _damage << endl;
-        cout<<"Boss takes "<<_damage<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _damage << " damage! Health now: " << boss->getHealth() << endl;
     }
     int getHealth()
     {
@@ -185,7 +180,7 @@ public:
     }
     void setHealth(int health)
     {
-        _health=health;
+        _health = health;
     }
     int getDamage()
     {
@@ -193,17 +188,17 @@ public:
     }
     void setMana(int mana)
     {
-        _mana=mana;
+        _mana = mana;
     }
     int getMana()
     {
         return _mana;
     }
-        void increaseMana(int increase)
+    void increaseMana(int increase)
     {
-        _mana+=increase;
+        _mana += increase;
     }
-        string getType()
+    string getType()
     {
         return _type;
     }
@@ -221,7 +216,7 @@ public:
         _damage = damage;
         _specialAbilityPower = 35;
         _mana = 0;
-        _type="Archer";
+        _type = "Archer";
     }
 
     void attack(BossEnemy *boss) override
@@ -237,13 +232,13 @@ public:
     {
         boss->setHealth(boss->getHealth() - _specialAbilityPower);
         cout << "Archer uses fire arrow with power " << _specialAbilityPower << endl;
-        cout<<"Boss takes "<<_specialAbilityPower<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _specialAbilityPower << " damage! Health now: " << boss->getHealth() << endl;
         setMana(0);
     }
     void displayStatus(BossEnemy *boss) override
     {
         cout << "Archer attacks with power " << _damage << endl;
-        cout<<"Boss takes "<<_damage<<" damage! Health now: "<<boss->getHealth()<<endl;
+        cout << "Boss takes " << _damage << " damage! Health now: " << boss->getHealth() << endl;
     }
     int getHealth()
     {
@@ -251,7 +246,7 @@ public:
     }
     void setHealth(int health)
     {
-        _health=health;
+        _health = health;
     }
     int getDamage()
     {
@@ -259,7 +254,7 @@ public:
     }
     void setMana(int mana)
     {
-        _mana=mana;
+        _mana = mana;
     }
     int getMana()
     {
@@ -267,16 +262,13 @@ public:
     }
     void increaseMana(int increase)
     {
-        _mana+=increase;
+        _mana += increase;
     }
     string getType()
     {
         return _type;
     }
 };
-
-
-
 
 class GameEngine
 {
@@ -290,79 +282,79 @@ private:
 public:
     GameEngine(int a)
     {
-        warrior=new Warrior("Warrior",100,25);
-        mage=new Mage("Mage",120,20);
-        archer=new Archer("Archer",90,20);
-        boss=new BossEnemy(150,30);
-        won=false;
+        warrior = new Warrior("Warrior", 100, 25);
+        mage = new Mage("Mage", 120, 20);
+        archer = new Archer("Archer", 90, 20);
+        boss = new BossEnemy(150, 30);
+        won = false;
     }
     void Start()
     {
-        cout<<"\nGame begins! Player vs. Boss"<<endl;
+        cout << "\nGame begins! Player vs. Boss" << endl;
         Update();
     }
 
-
     void Update()
     {
-        while(warrior->getHealth()>0&&mage->getHealth()>0&&archer->getHealth()>0)
+        while (warrior->getHealth() > 0 && mage->getHealth() > 0 && archer->getHealth() > 0)
         {
-            cout<<"\n"<<"\n";
+            cout << "\n"
+                 << "\n";
             warrior->attack(boss);
-            if(boss->getHealth()<=0)
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
-            if(warrior->getMana()>=100)
+            if (warrior->getMana() >= 100)
                 warrior->useSpecialAbility(boss);
-            
-            if(boss->getHealth()<=0)
+
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
 
             mage->attack(boss);
-            if(boss->getHealth()<=0)
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
-            if(mage->getMana()>=100)
+            if (mage->getMana() >= 100)
                 mage->useSpecialAbility(boss);
 
-            if(boss->getHealth()<=0)
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
 
             archer->attack(boss);
-            if(boss->getHealth()<=0)
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
-            if(archer->getMana()>=100)
+            if (archer->getMana() >= 100)
                 archer->useSpecialAbility(boss);
-            if(boss->getHealth()<=0)
+            if (boss->getHealth() <= 0)
             {
-                won=true;
+                won = true;
                 break;
             }
-            
-            cout<<"\n"<<"\n";
 
+            cout << "\n"
+                 << "\n";
 
             boss->attack(warrior);
             boss->attack(mage);
             boss->attack(archer);
-               
         }
-        if(won)
-            cout<<"Player won"<<endl;
-        else cout<<"Defeat";
+        if (won)
+            cout << "Player won" << endl;
+        else
+            cout << "Defeat";
     }
     ~GameEngine()
     {
@@ -371,12 +363,11 @@ public:
         delete boss;
         delete mage;
     }
-
 };
 
 int main()
 {
-    GameEngine* g=new GameEngine(10);
+    GameEngine *g = new GameEngine(10);
     g->Start();
     return 0;
 }
